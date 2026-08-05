@@ -411,10 +411,10 @@ pipeline {
             ACCNR = 'epic'
             NODE_PATH = '/scratch3/NAGAPE/epic/role-epic/'
             GITHUB_TOKEN = credentials('GithubJenkinsNew')
-          }
-        steps{
-         script{
-                  sh '''
+          }      
+      post {
+        always{
+               sh '''
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   echo "Testing concluded for ${GIT_URL}"
@@ -426,25 +426,31 @@ pipeline {
                   echo "https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/labels/orion-ORT"
                   curl --silent -X DELETE -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/labels/orion-ORT
                   sleep 60                  
-                  '''
-         } // script
-        } //steps
-      
-      post {
+                '''
+        } // always
+
         success {
           slackSend (
             channel:   '#jenkins-notifications',   
             color:   'good',   
             message:   "*SUCCESS:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
+          sh '''
+             echo "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/comments -d "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+          '''
         } // End of success
-
+  
         aborted {
           slackSend (
             channel:   '#jenkins-notifications',  
             color:   'warning',  
             message:   "*TIMEOUT:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
+          sh '''
+             echo "FAILURE run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/comments -d "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+          '''
         } // End of aborted
     
         failure {
@@ -453,7 +459,12 @@ pipeline {
             color:   'danger',   
             message:   "*FAILURE:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           ) // End of slacksend
+          sh '''
+             echo "FAILURE run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/comments -d "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+          '''
         } // End of failure
+
       } // End of post
     } // End of stage Post
 
