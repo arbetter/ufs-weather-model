@@ -452,7 +452,7 @@ pipeline {
             message:   "*TIMEOUT:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
           sh '''
-             echo "FAILURE run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             echo "TIMEOUT/ABORT run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
              curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/comments -d "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
           '''
         } // End of aborted
