@@ -292,7 +292,26 @@ pipeline {
                   git remote -v | grep -w sshorigin > /dev/null 2>&1 && git remote remove sshorigin > /dev/null 2>&1
                   git remote add sshorigin $SSH_ORIGIN > /dev/null 2>&1
                   git add logs/OpnReqTests_control_p8_hercules.log logs/OpnReqTests_regional_control_hercules.log
-                  git commit -m "Hercules ORT Completed.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                  '''
+                  success{
+                    sh '''
+                    echo "Hercules Success: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                    git commit -m "Hercules ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                   }
+                  aborted{
+                    sh '''
+                    echo "Hercules Timeout/Aborted: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                    git commit -m "Hercules ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                  }
+                  failure{
+                    sh '''
+                    echo "Hercules FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                    git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                  }
+                sh '''
                   git pull sshorigin $FORK_BRANCH
                   git push sshorigin HEAD:$FORK_BRANCH
                 '''
@@ -411,7 +430,26 @@ pipeline {
                   git remote -v | grep -w sshorigin > /dev/null 2>&1 && git remote remove sshorigin > /dev/null 2>&1
                   git remote add sshorigin $SSH_ORIGIN > /dev/null 2>&1
                   git add logs/OpnReqTests_control_p8_orion.log logs/OpnReqTests_regional_control_orion.log
-                  git commit -m "Orion ORT Completed.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                  '''
+                  success{
+                    sh '''
+                    echo "Orion Success: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                    git commit -m "Orion ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                   }
+                  aborted{
+                    sh '''
+                    echo "Orion Timeout/Aborted: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                    git commit -m "Orion ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                  }
+                  failure{
+                    sh '''
+                    echo "Orion FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+                    git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                  }
+                sh '''
                   git pull sshorigin $FORK_BRANCH
                   git push sshorigin HEAD:$FORK_BRANCH
                 '''
@@ -421,8 +459,7 @@ pipeline {
         } // End of stage Orion
       } // End of parallel
      } // End of stage Run ORTS in Parallel
-          
-     
+           
      stage('Post'){
        agent { label 'built-in' }
           environment {
