@@ -60,8 +60,7 @@ pipeline {
           }
           when{ 
             beforeAgent true
-           //   expression { env.CHOICE_NODE.contains("ursa") }
-              expression { env.CHOICE_NODE.contains("orion") }
+              expression { env.CHOICE_NODE.contains("ursa") }
           }
           stages{
             stage("regional_control"){
@@ -84,7 +83,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
 
                   pwd
-                #  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
@@ -112,9 +111,8 @@ pipeline {
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   echo "GIT_OWNER ${GIT_OWNER}"
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
-
                   pwd
-               #   ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
@@ -157,7 +155,24 @@ pipeline {
                   git remote -v | grep -w sshorigin > /dev/null 2>&1 && git remote remove sshorigin > /dev/null 2>&1
                   git remote add sshorigin $SSH_ORIGIN > /dev/null 2>&1
                   git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
-                  git commit -m "Ursa ORT Completed.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                  '''
+                  success{
+                  sh '''
+                    echo "Ursa success"
+                    git commit -m "Ursa ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                   }
+                  aborted{
+                    echo "Ursa timeout/aborted"
+                    git commit -m "Ursa ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                  }
+                  failure{
+                    echo "Ursa failure"
+                    git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    '''
+                  }
+                sh '''
                   git pull sshorigin $FORK_BRANCH
                   git push sshorigin HEAD:$FORK_BRANCH
                 '''
@@ -440,12 +455,12 @@ pipeline {
             color:   'good',   
             message:   "*SUCCESS:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
-          sh '''
-             BODY="Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
-             PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
-             echo "curling..."
-             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
-          '''
+//          sh '''
+//             BODY="Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+//             PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
+//             echo "curling..."
+//             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
+//          '''
         } // End of success
   
         aborted {
@@ -454,12 +469,12 @@ pipeline {
             color:   'warning',  
             message:   "*TIMEOUT:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
-          sh '''
-             BODY="Timeout/Aborted run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
-             PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
-             echo "curling..."
-             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
-          '''
+ //         sh '''
+ //            BODY="Timeout/Aborted run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+ //            PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
+ //            echo "curling..."
+ //            curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
+ //         '''
         } // End of aborted
     
         failure {
@@ -468,12 +483,12 @@ pipeline {
             color:   'danger',   
             message:   "*FAILURE:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           ) // End of slacksend
-          sh '''
-             BODY="FAILED run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
-             PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
-             echo "curling..."
-             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
-          '''
+  //        sh '''
+  //           BODY="FAILED run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+  //           PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
+  //           echo "curling..."
+  //           curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
+  //        '''
         } // End of failure
 
       } // End of post
