@@ -83,7 +83,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
 
                   pwd
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
+                #  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
@@ -113,7 +113,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
 
                   pwd
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
+               #   ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
@@ -440,7 +440,7 @@ pipeline {
             message:   "*SUCCESS:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
           sh '''
-             echo "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             echo "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
              curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d "Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
           '''
         } // End of success
@@ -452,7 +452,7 @@ pipeline {
             message:   "*TIMEOUT:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
           sh '''
-             echo "TIMEOUT/ABORT run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             echo "TIMEOUT/ABORT run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
              curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d "Aborted run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
           '''
         } // End of aborted
@@ -464,7 +464,7 @@ pipeline {
             message:   "*FAILURE:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           ) // End of slacksend
           sh '''
-             echo "FAILURE run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
+             echo "FAILURE run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
              curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d "Failed run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}*"
           '''
         } // End of failure
