@@ -136,15 +136,15 @@ pipeline {
                   echo "GIT_OWNER ${GIT_OWNER}"
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
 
-                  echo 'cd tests'
-                  pwd 
-                  git remote -v
-                  git fetch --no-recurse-submodules origin
-                  git reset FETCH_HEAD --hard
-                  cd $WORKSPACE/..
-                  echo '3 cds'
-                  pwd
-                  ls -l
+               #   echo 'cd tests'
+               #   pwd 
+               #   git remote -v
+               #   git fetch --no-recurse-submodules origin
+               #   git reset FETCH_HEAD --hard
+               #   cd $WORKSPACE/..
+               #   echo '3 cds'
+               #   pwd
+               #   ls -l
 
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                 #  mv OpnReqTests_control_p8_ursa.log $WORKSPACE/tests/logs/
