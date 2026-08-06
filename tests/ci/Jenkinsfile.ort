@@ -157,18 +157,20 @@ pipeline {
                   git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
                   '''
                   success{
-                  sh '''
-                    echo "Ursa success"
+                    sh '''
+                    echo "Ursa Success: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                     git commit -m "Ursa ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     '''
                    }
                   aborted{
-                    echo "Ursa timeout/aborted"
+                    sh '''
+                    echo "Ursa Timeout/Aborted: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                     git commit -m "Ursa ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     '''
                   }
                   failure{
-                    echo "Ursa failure"
+                    sh '''
+                    echo "Ursa FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                     git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     '''
                   }
