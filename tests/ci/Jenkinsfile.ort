@@ -166,6 +166,7 @@ pipeline {
                   export machine_name_logs=$(echo $machine | awk '{ print tolower($1) }')
                   git remote -v | grep -w sshorigin > /dev/null 2>&1 && git remote remove sshorigin > /dev/null 2>&1
                   git remote add sshorigin $SSH_ORIGIN > /dev/null 2>&1
+                  echo "Finalizing Ursa: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                   '''
                  } // always
 
@@ -181,6 +182,7 @@ pipeline {
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
                     git commit -m "Ursa ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -199,6 +201,7 @@ pipeline {
                     git add logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git commit -m "Ursa ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -217,6 +220,7 @@ pipeline {
                     git add logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -348,6 +352,7 @@ pipeline {
                   export machine_name_logs=$(echo $machine | awk '{ print tolower($1) }')
                   git remote -v | grep -w sshorigin > /dev/null 2>&1 && git remote remove sshorigin > /dev/null 2>&1
                   git remote add sshorigin $SSH_ORIGIN > /dev/null 2>&1
+                  echo "Finalizing Hercules: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                   '''
                  } // always
 
@@ -363,6 +368,7 @@ pipeline {
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_hercules.log logs/OpnReqTests_regional_control_hercules.log
                     git commit -m "Hercules ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -381,6 +387,7 @@ pipeline {
                     git add logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git commit -m "Hercules ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -399,6 +406,7 @@ pipeline {
                     git add logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false                    
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -531,6 +539,7 @@ pipeline {
                   export machine_name_logs=$(echo $machine | awk '{ print tolower($1) }')
                   git remote -v | grep -w sshorigin > /dev/null 2>&1 && git remote remove sshorigin > /dev/null 2>&1
                   git remote add sshorigin $SSH_ORIGIN > /dev/null 2>&1
+                  echo "Finalizing Orion: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
                   '''
                  } // always
 
@@ -546,6 +555,7 @@ pipeline {
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_orion.log logs/OpnReqTests_regional_control_orion.log
                     git commit -m "Orion ORT Successful.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -564,6 +574,7 @@ pipeline {
                     git add logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git commit -m "Orion ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
@@ -582,6 +593,7 @@ pipeline {
                     git add logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
                     '''
