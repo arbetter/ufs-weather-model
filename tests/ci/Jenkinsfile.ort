@@ -198,7 +198,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git add logs/log_opnReqTest_ursa
+                    git -f add logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git commit -m "Ursa ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -217,7 +217,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git add logs/log_opnReqTest_ursa
+                    git -f add logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -384,7 +384,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git add logs/log_opnReqTest_hercules
+                    git -f add logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git commit -m "Hercules ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -403,7 +403,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git add logs/log_opnReqTest_hercules
+                    git -f add logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false                    
@@ -571,7 +571,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git add logs/log_opnReqTest_orion
+                    git -f add logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git commit -m "Orion ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -590,7 +590,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git add logs/log_opnReqTest_orion
+                    git -f add logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
