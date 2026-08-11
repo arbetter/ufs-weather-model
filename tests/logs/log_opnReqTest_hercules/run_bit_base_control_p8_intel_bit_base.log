@@ -1,0 +1,71 @@
+PID=4146469
+PATHRT: /work2/noaa/epic/role-epic/jenkins/workspace/_Weather_Model_ORT_arbetter_PR-3/tests
+RUNDIR_ROOT: /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3875283
+TEST_NAME: control_p8
+TEST_ID: bit_base
+COMPILE_ID: bit
+Test bit_base Compare global control results with previous trunk version
+inputdir=FV3_input_data,NPX=97,NESTED=.false.
+rt_utils.sh: Submitting job on scheduler: slurm
+rt_utils.sh: Submitted Job. ID is 9529948.
+rt_utils.sh: Job is waiting to enter the queue...
+rt_utils.sh Job (9529948) is now in the queue.
+1 min. Slurm Job 9529948 Status: Job running (RUNNING)
+2 min. Slurm Job 9529948 Status: Job running (RUNNING)
+3 min. Slurm Job 9529948 Status: Job running (RUNNING)
+4 min. Slurm Job 9529948 Status: Completed (COMPLETED)
+
+baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_bit_base_intel
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3875283/bit_base_bit_base
+Checking test bit_base results ....
+
+Moving baseline bit_base files ....
+
+ Moving sfcf000.nc .........OK
+ Moving sfcf021.nc .........OK
+ Moving sfcf024.nc .........OK
+ Moving atmf000.nc .........OK
+ Moving atmf021.nc .........OK
+ Moving atmf024.nc .........OK
+ Moving GFSFLX.GrbF00 .........OK
+ Moving GFSFLX.GrbF21 .........OK
+ Moving GFSFLX.GrbF24 .........OK
+ Moving GFSPRS.GrbF00 .........OK
+ Moving GFSPRS.GrbF21 .........OK
+ Moving GFSPRS.GrbF24 .........OK
+ Moving RESTART/20210323.060000.coupler.res .........OK
+ Moving RESTART/20210323.060000.fv_core.res.nc .........OK
+ Moving RESTART/20210323.060000.fv_core.res.tile1.nc .........OK
+ Moving RESTART/20210323.060000.fv_core.res.tile2.nc .........OK
+ Moving RESTART/20210323.060000.fv_core.res.tile3.nc .........OK
+ Moving RESTART/20210323.060000.fv_core.res.tile4.nc .........OK
+ Moving RESTART/20210323.060000.fv_core.res.tile5.nc .........OK
+ Moving RESTART/20210323.060000.fv_core.res.tile6.nc .........OK
+ Moving RESTART/20210323.060000.fv_srf_wnd.res.tile1.nc .........OK
+ Moving RESTART/20210323.060000.fv_srf_wnd.res.tile2.nc .........OK
+ Moving RESTART/20210323.060000.fv_srf_wnd.res.tile3.nc .........OK
+ Moving RESTART/20210323.060000.fv_srf_wnd.res.tile4.nc .........OK
+ Moving RESTART/20210323.060000.fv_srf_wnd.res.tile5.nc .........OK
+ Moving RESTART/20210323.060000.fv_srf_wnd.res.tile6.nc .........OK
+ Moving RESTART/20210323.060000.fv_tracer.res.tile1.nc .........OK
+ Moving RESTART/20210323.060000.fv_tracer.res.tile2.nc .........OK
+ Moving RESTART/20210323.060000.fv_tracer.res.tile3.nc .........OK
+ Moving RESTART/20210323.060000.fv_tracer.res.tile4.nc .........OK
+ Moving RESTART/20210323.060000.fv_tracer.res.tile5.nc .........OK
+ Moving RESTART/20210323.060000.fv_tracer.res.tile6.nc .........OK
+ Moving RESTART/20210323.060000.phy_data.tile1.nc .........OK
+ Moving RESTART/20210323.060000.phy_data.tile2.nc .........OK
+ Moving RESTART/20210323.060000.phy_data.tile3.nc .........OK
+ Moving RESTART/20210323.060000.phy_data.tile4.nc .........OK
+ Moving RESTART/20210323.060000.phy_data.tile5.nc .........OK
+ Moving RESTART/20210323.060000.phy_data.tile6.nc .........OK
+ Moving RESTART/20210323.060000.sfc_data.tile1.nc .........OK
+ Moving RESTART/20210323.060000.sfc_data.tile2.nc .........OK
+ Moving RESTART/20210323.060000.sfc_data.tile3.nc .........OK
+ Moving RESTART/20210323.060000.sfc_data.tile4.nc .........OK
+ Moving RESTART/20210323.060000.sfc_data.tile5.nc .........OK
+ Moving RESTART/20210323.060000.sfc_data.tile6.nc .........OK
+Test bit_base PASS
+
+run_test.sh: Test bit_base Completed.
+run_test.sh: Test bit_base Elapsed time 269 seconds.
