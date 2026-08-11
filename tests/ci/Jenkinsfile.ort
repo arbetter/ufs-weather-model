@@ -198,7 +198,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git -f add logs/log_opnReqTest_ursa
+                    git add -f logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git commit -m "Ursa ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -217,7 +217,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git -f add logs/log_opnReqTest_ursa
+                    git add -f logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -384,7 +384,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git -f add logs/log_opnReqTest_hercules
+                    git add -f logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git commit -m "Hercules ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -403,7 +403,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git -f add logs/log_opnReqTest_hercules
+                    git add -f logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false                    
@@ -571,7 +571,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git -f add logs/log_opnReqTest_orion
+                    git add -f logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git commit -m "Orion ORT Timeout/Aborted.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -590,7 +590,7 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
-                    git -f add logs/log_opnReqTest_orion
+                    git add -f logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
@@ -641,12 +641,6 @@ pipeline {
             color:   'good',   
             message:   "*SUCCESS:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
-//          sh '''
-//             BODY="Successful run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
-//             PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
-//             echo "curling..."
-//             curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
-//          '''
         } // End of success
   
         aborted {
@@ -655,12 +649,6 @@ pipeline {
             color:   'warning',  
             message:   "*TIMEOUT:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           )
- //         sh '''
- //            BODY="Timeout/Aborted run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
- //            PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
- //            echo "curling..."
- //            curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
- //         '''
         } // End of aborted
     
         failure {
@@ -669,12 +657,6 @@ pipeline {
             color:   'danger',   
             message:   "*FAILURE:   Build ${env.JOB_NAME} #${env.BUILD_NUMBER}* <${env.BUILD_URL}|Open Build>"
           ) // End of slacksend
-  //        sh '''
-  //           BODY="FAILED run: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}"
-  //           PAYLOAD=$(jp -n --arg body "$BODY" '{body: $body}')
-  //           echo "curling..."
-  //           curl --silent -X POST -H "Accept:   application/vnd.github.v3+json" -H "Authorization:   Bearer ${GITHUB_TOKEN}"  https://api.github.com/repos/${GIT_OWNER}/${GIT_REPO_NAME}/issues/${CHANGE_ID}/body -d $PAYLOAD
-  //        '''
         } // End of failure
 
       } // End of post
