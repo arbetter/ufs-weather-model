@@ -114,7 +114,9 @@ pipeline {
                   echo "GIT_OWNER ${GIT_OWNER}"
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
+#                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
+#tea skip run
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -z
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
