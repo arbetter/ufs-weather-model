@@ -1,9 +1,9 @@
-Mon Aug 10 12:50:06 CDT 2026
+Tue Aug 11 19:33:23 CDT 2026
 Start Operation Requirement Test
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_bit_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/bit_base_bit_base
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/bit_base_bit_base
 Checking test bit_base results ....
 Moving baseline bit_base files ....
  Moving sfcf000.nc .........OK
@@ -51,14 +51,14 @@ Moving baseline bit_base files ....
  Moving RESTART/20210323.060000.sfc_data.tile5.nc .........OK
  Moving RESTART/20210323.060000.sfc_data.tile6.nc .........OK
 
-  0: The total amount of wall time                        = 192.955182
-  0: The maximum resident set size (KB)                   = 1979192
+  0: The total amount of wall time                        = 204.536926
+  0: The maximum resident set size (KB)                   = 1980284
 
 Test bit_base PASS
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_dbg_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/dbg_base_dbg_base
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/dbg_base_dbg_base
 Checking test dbg_base results ....
 Moving baseline dbg_base files ....
  Moving sfcf000.nc .........OK
@@ -106,14 +106,14 @@ Moving baseline dbg_base files ....
  Moving RESTART/20210323.060000.sfc_data.tile5.nc .........OK
  Moving RESTART/20210323.060000.sfc_data.tile6.nc .........OK
 
-  0: The total amount of wall time                        = 1588.620653
-  0: The maximum resident set size (KB)                   = 1927664
+  0: The total amount of wall time                        = 1574.585288
+  0: The maximum resident set size (KB)                   = 1940124
 
 Test dbg_base PASS
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/dcp_dcp
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/dcp_dcp
 Checking test dcp results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -160,14 +160,14 @@ Checking test dcp results ....
  Comparing RESTART/20210323.060000.sfc_data.tile5.nc .....USING NCCMP......OK
  Comparing RESTART/20210323.060000.sfc_data.tile6.nc .....USING NCCMP......OK
 
-  0: The total amount of wall time                        = 146.607264
-  0: The maximum resident set size (KB)                   = 1898520
+  0: The total amount of wall time                        = 143.258434
+  0: The maximum resident set size (KB)                   = 1906696
 
 Test dcp PASS
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/mpi_mpi
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/mpi_mpi
 Checking test mpi results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -214,14 +214,14 @@ Checking test mpi results ....
  Comparing RESTART/20210323.060000.sfc_data.tile5.nc .....USING NCCMP......OK
  Comparing RESTART/20210323.060000.sfc_data.tile6.nc .....USING NCCMP......OK
 
-  0: The total amount of wall time                        = 230.662312
-  0: The maximum resident set size (KB)                   = 1900688
+  0: The total amount of wall time                        = 222.772345
+  0: The maximum resident set size (KB)                   = 1905036
 
 Test mpi PASS
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/rst_rst
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/rst_rst
 Checking test rst results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -268,14 +268,14 @@ Checking test rst results ....
  Comparing RESTART/20210323.060000.sfc_data.tile5.nc .....USING NCCMP......OK
  Comparing RESTART/20210323.060000.sfc_data.tile6.nc .....USING NCCMP......OK
 
-  0: The total amount of wall time                        = 141.878320
-  0: The maximum resident set size (KB)                   = 1902324
+  0: The total amount of wall time                        = 143.183349
+  0: The maximum resident set size (KB)                   = 1899916
 
 Test rst PASS
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/std_base_std_base
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/std_base_std_base
 Checking test std_base results ....
 Moving baseline std_base files ....
  Moving sfcf000.nc .........OK
@@ -323,14 +323,14 @@ Moving baseline std_base files ....
  Moving RESTART/20210323.060000.sfc_data.tile5.nc .........OK
  Moving RESTART/20210323.060000.sfc_data.tile6.nc .........OK
 
-  0: The total amount of wall time                        = 142.748333
-  0: The maximum resident set size (KB)                   = 1897300
+  0: The total amount of wall time                        = 283.942078
+  0: The maximum resident set size (KB)                   = 1903284
 
 Test std_base PASS
 
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1103655/thr_thr
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1902228/thr_thr
 Checking test thr results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -377,11 +377,11 @@ Checking test thr results ....
  Comparing RESTART/20210323.060000.sfc_data.tile5.nc .....USING NCCMP......OK
  Comparing RESTART/20210323.060000.sfc_data.tile6.nc .....USING NCCMP......OK
 
-  0: The total amount of wall time                        = 145.239772
-  0: The maximum resident set size (KB)                   = 1902000
+  0: The total amount of wall time                        = 143.130073
+  0: The maximum resident set size (KB)                   = 1900372
 
 Test thr PASS
 
 OPERATION REQUIREMENT TEST WAS SUCCESSFUL
-Mon Aug 10 14:12:54 CDT 2026
-Elapsed time: 01h:22m:48s. Have a nice day!
+Tue Aug 11 20:58:54 CDT 2026
+Elapsed time: 01h:25m:31s. Have a nice day!
