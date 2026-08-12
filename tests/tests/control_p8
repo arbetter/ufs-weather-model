@@ -57,8 +57,6 @@ export_fv3
 export_tiled
 export_ugwpv1
 CCPP_SUITE=FV3_GFS_v17_p8_ugwpv1
-#tea add invalid_test to force control_p8 to fail
-CCPP_SUITE=invalid_test
 
 NPZP=128
 SYEAR=2021
