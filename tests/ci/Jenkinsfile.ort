@@ -70,13 +70,12 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
 
                     log_error() {
-                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                        echo "ERROR in $1 on line $2" > $WORKSPACE/tests/error.log
                     }
 
                   git submodule update --init --recursive
@@ -114,13 +113,12 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
 
                     log_error() {
-                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                        echo "ERROR in $1 on line $2" > $WORKSPACE/tests/error.log
                     }
 
                   git submodule update --init --recursive
@@ -282,13 +280,12 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
 
                     log_error() {
-                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                        echo "ERROR in $1 on line $2" > $WORKSPACE/tests/error.log
                     }
 
                   git submodule update --init --recursive
@@ -325,13 +322,12 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
 
                     log_error() {
-                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                        echo "ERROR in $1 on line $2" > $WORKSPACE/tests/error.log
                     }
 
                   git submodule update --init --recursive
@@ -485,13 +481,12 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
 
                     log_error() {
-                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                        echo "ERROR in $1 on line $2" > $WORKSPACE/tests/error.log
                     }
 
                   git submodule update --init --recursive
@@ -529,13 +524,12 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
 
                     log_error() {
-                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                        echo "ERROR in $1 on line $2" > $WORKSPACE/tests/error.log
                     }
 
                   git submodule update --init --recursive
