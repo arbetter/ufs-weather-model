@@ -71,8 +71,7 @@ pipeline {
                 checkout scm
                 script{
                 def exitCode = sh(
-                returnStatus: true,
-                script: sh("""
+                script: '''
                   set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
@@ -87,7 +86,8 @@ pipeline {
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
-                """)
+                  ''',
+                  returnStatus: true
                 ).trim()
                 echo "Ursa regional_control exit code: ${exitCode}"
                 if (exitCode == 0) {
