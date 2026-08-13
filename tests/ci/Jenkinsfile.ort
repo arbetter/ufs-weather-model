@@ -84,7 +84,8 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
 
                   pwd
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
+//                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
@@ -113,8 +114,8 @@ pipeline {
                   echo "GIT_OWNER ${GIT_OWNER}"
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-
+ //                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
