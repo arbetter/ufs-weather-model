@@ -51,8 +51,7 @@ pipeline {
         stage('Ursa'){
           agent{ label 'Ursa' }
           options{
-//           timeout(time:   6,   unit:   'HOURS')
-            timeout(time:  15,   unit:   'MINUTES')
+            timeout(time:   6,   unit:   'HOURS')
           }
           environment {
             ACCNR = 'epic'
@@ -84,7 +83,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
 
                   pwd
-//                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
+#                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
@@ -114,7 +113,7 @@ pipeline {
                   echo "GIT_OWNER ${GIT_OWNER}"
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
- //                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
+#                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
                   ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
