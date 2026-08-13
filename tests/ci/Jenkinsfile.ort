@@ -57,6 +57,8 @@ pipeline {
             ACCNR = 'epic'
             NODE_PATH = '/scratch3/NAGAPE/epic/role-epic/'
             GITHUB_TOKEN = credentials('GithubJenkinsNew')
+            region_result='SUCCESS'
+            control_result='SUCCESS'
           }
           when{ 
             beforeAgent true
@@ -67,7 +69,11 @@ pipeline {
               steps{
                 cleanWs()
                 checkout scm
-                sh '''
+                script{
+                def bashOutput = sh(
+                returnStdut: true,
+                script: sh '''
+                  set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
                   sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
@@ -85,12 +91,24 @@ pipeline {
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
+                  EXIT_CODE=\$?
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
                 '''
+                ).trim()
+                def exitCode = bashOutput.toInteger()
+                echo "Ursa regional_control exit code: ${exitCode}"
+                if (exitCode == 0) {
+                  echo "Pipeline continuing normally."
+                } else {
+                  echo "Handling failure in Groovy. Changing stage color..."
+                  currentBuild.result = 'UNSTABLE'
+                  region_result = 'FAILURE'
+                }
+                } //script
               } // End of steps
             } // End of stage regional control
             
@@ -98,7 +116,11 @@ pipeline {
               steps{
                 cleanWs()
                 checkout scm
-                sh '''	
+                script{
+                def bashOutput = sh(
+                returnStdut: true,
+                script: sh '''
+                  set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
                   sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
@@ -121,11 +143,29 @@ pipeline {
                   cd ..
                   pwd
                 '''
+                ).trim()
+                def exitCode = bashOutput.toInteger()
+                echo "Ursa regional_control exit code: ${exitCode}"
+                if (exitCode == 0) {
+                  echo "Pipeline continuing normally."
+                } else {
+                  echo "Handling failure in Groovy. Changing stage color..."
+                  currentBuild.result = 'UNSTABLE'
+                  control_result = 'FAILURE'
+                }
+                } //script
               } // End of steps
             } // End of control_p8 stage
             
             stage("Finalize Ursa"){ 
               steps{
+                if (region_result == 'FAILURE' || control_result == 'FAILURE') {
+                   echo "Ursa ORT Failed"
+                   currentBuild.result = 'FAILURE'
+                } else {
+                   echo "Ursa ORT Success"
+                  currentBuild.result = 'SUCCESS'
+                }
                 sh '''
                   export machine=${NODE_NAME}
                   export PATH=$PATH:~/bin
