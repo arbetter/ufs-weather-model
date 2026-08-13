@@ -113,6 +113,7 @@ pipeline {
               steps{
                 cleanWs()
                 checkout scm
+                script{
                 sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
