@@ -51,7 +51,7 @@ pipeline {
         stage('Ursa'){
           agent{ label 'Ursa' }
           options{
-#            timeout(time:   6,   unit:   'HOURS')
+//           timeout(time:   6,   unit:   'HOURS')
             timeout(time:  15,   unit:   'MINUTES')
           }
           environment {
