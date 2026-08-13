@@ -245,6 +245,7 @@ pipeline {
                   cd $WORKSPACE/tests/
                     git add -f logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
+                    git status
                     git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
 #                    git config pull.rebase false
 #                    git pull sshorigin $FORK_BRANCH
@@ -443,6 +444,7 @@ pipeline {
                   cd $WORKSPACE/tests/
                     git add -f logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
+                    git status
                     git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
    #                 git config pull.rebase false                    
    #                 git pull sshorigin $FORK_BRANCH
@@ -643,6 +645,7 @@ pipeline {
                   cd $WORKSPACE/tests/
                     git add -f logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
+                    git status
                     git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
    #                 git config pull.rebase false
    #                git pull sshorigin $FORK_BRANCH
