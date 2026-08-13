@@ -70,9 +70,15 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
+                sh 'echo "" > $WORKSPACE/tests/error.log'
                 def exitCode = sh(
                 script: '''
                   set +e
+
+                    log_error() {
+                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                    }
+
                   git submodule update --init --recursive
                   cd tests/fv3_conf
                   sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
@@ -80,12 +86,13 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
+                  [ -s $WORKSPACE/tests/error.log ] && exit 1 || exit 0
                   ''',
                   returnStatus: true
                 ) // exitCode
