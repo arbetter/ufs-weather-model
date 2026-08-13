@@ -86,7 +86,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
@@ -134,7 +134,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
@@ -298,7 +298,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   mv OpnReqTests_regional_control_hercules.log $WORKSPACE/..
                   cd ..
@@ -345,7 +345,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_hercules.log $WORKSPACE/..
@@ -501,7 +501,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_orion.log $WORKSPACE/..
@@ -549,7 +549,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_orion.log $WORKSPACE/..
