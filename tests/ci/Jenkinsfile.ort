@@ -92,7 +92,7 @@ pipeline {
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
-                  [ -s $WORKSPACE/tests/error.log ] && exit 1 || exit 0
+                  [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0 
                   ''',
                   returnStatus: true
                 ) // exitCode
@@ -140,6 +140,7 @@ pipeline {
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
+                  [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0    
                   ''',
                   returnStatus: true
                 ) // exitCode
