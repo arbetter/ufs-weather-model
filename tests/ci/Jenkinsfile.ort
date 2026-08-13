@@ -72,26 +72,18 @@ pipeline {
                 script{
                 def bashOutput = sh(
                 returnStdout: true,
-                script: sh('''
+                script: sh("""
                   set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
                   sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
                   cd ..
-                  export machine=${NODE_NAME}
-                  export PATH=$PATH:~/bin
-                  export SSH_ORIGIN=$(curl --silent https://api.github.com/repos/arbetter/ufs-weather-model/pulls/$CHANGE_ID | jq -r '.head.repo.ssh_url')
-                  export FORK_BRANCH=$(curl --silent https://api.github.com/repos/arbetter/ufs-weather-model/pulls/$CHANGE_ID | jq -r '.head.ref')
                   export ACCNR=epic
-                  export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
-                  export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  echo "GIT_OWNER ${GIT_OWNER}"
-                  echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
                   EXIT_CODE=\$?
-                ''')
+                """)
                 ).trim()
                 def exitCode = bashOutput.toInteger()
                 echo "Ursa regional_control exit code: ${exitCode}"
