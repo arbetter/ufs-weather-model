@@ -71,7 +71,7 @@ pipeline {
                 checkout scm
                 script{
                 def bashOutput = sh(
-                returnStdout: true,
+                returnStatus: true,
                 script: sh("""
                   set +e
                   git submodule update --init --recursive
