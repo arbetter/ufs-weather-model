@@ -72,7 +72,7 @@ pipeline {
                 script{
                 def bashOutput = sh(
                 returnStdout: true,
-                script: sh ('''
+                script: sh('''
                   set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
