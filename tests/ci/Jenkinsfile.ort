@@ -70,7 +70,7 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                def bashOutput = sh(
+                def exitCode = sh(
                 returnStatus: true,
                 script: sh("""
                   set +e
@@ -82,10 +82,8 @@ pipeline {
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
-                  EXIT_CODE=\$?
                 """)
                 ).trim()
-                def exitCode = bashOutput.toInteger()
                 echo "Ursa regional_control exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
