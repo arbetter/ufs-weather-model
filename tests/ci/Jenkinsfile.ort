@@ -158,6 +158,8 @@ pipeline {
             } // End of control_p8 stage
             
             stage("Finalize Ursa"){ 
+              steps{
+                script{
                 echo "test for fail"
                 if (region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Ursa ORT Failed"
@@ -166,7 +168,7 @@ pipeline {
                    echo "Ursa ORT Success"
                   currentBuild.result = 'SUCCESS'
                 }
-              steps{
+                } // script
                 sh '''
                   export machine=${NODE_NAME}
                   export PATH=$PATH:~/bin
