@@ -243,13 +243,16 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
+# touch files so they will always be updated
+                    touch logs/log_opnReqTest_ursa/*
+                    touch logs/RegressionTests_ursa.log
                     git add -f logs/log_opnReqTest_ursa
                     git add logs/RegressionTests_ursa.log
                     git status
                     git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
-#                    git config pull.rebase false
-#                    git pull sshorigin $FORK_BRANCH
-#                    git push sshorigin HEAD:$FORK_BRANCH
+                    git config pull.rebase false
+                    git pull sshorigin $FORK_BRANCH
+                    git push sshorigin HEAD:$FORK_BRANCH
                   echo "Ursa Failed"
                     '''
                   }
@@ -442,13 +445,16 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
+# touch files so they will always be updated
+                    touch logs/log_opnReqTest_hercules/*
+                    touch logs/RegressionTests_hercules.log
                     git add -f logs/log_opnReqTest_hercules
                     git add logs/RegressionTests_hercules.log
                     git status
                     git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
-   #                 git config pull.rebase false                    
-   #                 git pull sshorigin $FORK_BRANCH
-   #                 git push sshorigin HEAD:$FORK_BRANCH
+                    git config pull.rebase false                    
+                    git pull sshorigin $FORK_BRANCH
+                    git push sshorigin HEAD:$FORK_BRANCH
                   echo "Hercules Failure"
                     '''
                   }
@@ -643,13 +649,16 @@ pipeline {
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
                   cd $WORKSPACE/tests/
+# touch files so they will always be updated
+                    touch logs/log_opnReqTest_orion/*
+                    touch logs/RegressionTests_orion.log
                     git add -f logs/log_opnReqTest_orion
                     git add logs/RegressionTests_orion.log
                     git status
                     git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
-   #                 git config pull.rebase false
-   #                git pull sshorigin $FORK_BRANCH
-   #                 git push sshorigin HEAD:$FORK_BRANCH
+                    git config pull.rebase false
+                    git pull sshorigin $FORK_BRANCH
+                    git push sshorigin HEAD:$FORK_BRANCH
                   echo "Orion Failure"
                     '''
                   }
