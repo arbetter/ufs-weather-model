@@ -82,6 +82,11 @@ pipeline {
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
                   ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x
+                  cd $WORKSPACE/tests/logs/
+                  # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
+                  mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
+                  cd ..
+                  pwd
                 """)
                 ).trim()
                 echo "Ursa regional_control exit code: ${exitCode}"
@@ -95,11 +100,7 @@ pipeline {
                 } //script
 
                   sh '''
-                  cd $WORKSPACE/tests/logs/
-                  # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
-                  mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
-                  cd ..
-                  pwd
+
                   '''
 
               } // End of steps
