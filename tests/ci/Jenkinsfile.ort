@@ -72,7 +72,7 @@ pipeline {
                 script{
                 def bashOutput = sh(
                 returnStdut: true,
-                script: sh '''
+                script: sh """
                   set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
@@ -97,7 +97,7 @@ pipeline {
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
-                '''
+                """
                 ).trim()
                 def exitCode = bashOutput.toInteger()
                 echo "Ursa regional_control exit code: ${exitCode}"
@@ -119,7 +119,7 @@ pipeline {
                 script{
                 def bashOutput = sh(
                 returnStdut: true,
-                script: sh '''
+                script: sh """
                   set +e
                   git submodule update --init --recursive
                   cd tests/fv3_conf
@@ -142,7 +142,7 @@ pipeline {
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
-                '''
+                """
                 ).trim()
                 def exitCode = bashOutput.toInteger()
                 echo "Ursa regional_control exit code: ${exitCode}"
