@@ -88,7 +88,7 @@ pipeline {
                   pwd
                   ''',
                   returnStatus: true
-                ).trim()
+                ) // exitCode
                 echo "Ursa regional_control exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
