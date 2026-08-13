@@ -159,6 +159,7 @@ pipeline {
             
             stage("Finalize Ursa"){ 
               steps{
+                echo "test for fail"
                 if (region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Ursa ORT Failed"
                    currentBuild.result = 'FAILURE'
