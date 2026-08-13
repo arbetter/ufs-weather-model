@@ -101,14 +101,10 @@ pipeline {
                   echo "Pipeline continuing normally."
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'UNSTABLE'
+                  currentBuild.result = 'FAILURE'
                   region_result = 'FAILURE'
                 }
                 } //script
-
-                  sh '''
-
-                  '''
 
               } // End of steps
             } // End of stage regional control
@@ -117,19 +113,19 @@ pipeline {
               steps{
                 cleanWs()
                 checkout scm
-                script{
-                def bashOutput = sh(
-                returnStdout: true,
-                script: sh('''
+                sh 'echo "" > $WORKSPACE/tests/error.log'
+                def exitCode = sh(
+                script: '''
                   set +e
+
+                    log_error() {
+                        echo "ERROR in $1 on line $2" >> $WORKSPACE/tests/error.log
+                    }
+
                   git submodule update --init --recursive
                   cd tests/fv3_conf
                   sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
                   cd ..
-                  export machine=${NODE_NAME}
-                  export PATH=$PATH:~/bin
-                  export SSH_ORIGIN=$(curl --silent https://api.github.com/repos/arbetter/ufs-weather-model/pulls/$CHANGE_ID | jq -r '.head.repo.ssh_url')
-                  export FORK_BRANCH=$(curl --silent https://api.github.com/repos/arbetter/ufs-weather-model/pulls/$CHANGE_ID | jq -r '.head.ref')
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
@@ -137,21 +133,21 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -x || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
-                ''')
-                ).trim()
-                def exitCode = bashOutput.toInteger()
-                echo "Ursa regional_control exit code: ${exitCode}"
+                  ''',
+                  returnStatus: true
+                ) // exitCode
+                echo "Ursa control_p8 exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'UNSTABLE'
+                  currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
                 } //script
