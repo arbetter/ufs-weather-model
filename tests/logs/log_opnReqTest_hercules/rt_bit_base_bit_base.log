@@ -1,6 +1,6 @@
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_bit_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3687873/bit_base_bit_base
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1699948/bit_base_bit_base
 Checking test bit_base results ....
 Moving baseline bit_base files ....
  Moving sfcf000.nc .........OK
@@ -48,8 +48,8 @@ Moving baseline bit_base files ....
  Moving RESTART/20210323.060000.sfc_data.tile5.nc .........OK
  Moving RESTART/20210323.060000.sfc_data.tile6.nc .........OK
 
-  0: The total amount of wall time                        = 166.877860
-  0: The maximum resident set size (KB)                   = 1930024
+  0: The total amount of wall time                        = 102.458061
+  0: The maximum resident set size (KB)                   = 1922432
 
 Test bit_base PASS
 
