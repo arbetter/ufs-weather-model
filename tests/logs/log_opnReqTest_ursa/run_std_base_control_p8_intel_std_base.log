@@ -1,21 +1,21 @@
-PID=413464
+PID=1309613
 PATHRT: /scratch3/NAGAPE/epic/role-epic/jenkins/workspace/_Weather_Model_ORT_arbetter_PR-3/tests
-RUNDIR_ROOT: /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_358810
+RUNDIR_ROOT: /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_1267906
 TEST_NAME: control_p8
 TEST_ID: std_base
 COMPILE_ID: std
 Test std_base Compare global control results with previous trunk version
 inputdir=FV3_input_data,NPX=97,NESTED=.false.
 rt_utils.sh: Submitting job on scheduler: slurm
-rt_utils.sh: Submitted Job. ID is 19348024.
+rt_utils.sh: Submitted Job. ID is 19352588.
 rt_utils.sh: Job is waiting to enter the queue...
-rt_utils.sh Job (19348024) is now in the queue.
-1 min. Slurm Job 19348024 Status: Job waiting to start (PENDING)
-2 min. Slurm Job 19348024 Status: Job running (RUNNING)
-3 min. Slurm Job 19348024 Status: Completed (COMPLETED)
+rt_utils.sh Job (19352588) is now in the queue.
+1 min. Slurm Job 19352588 Status: Job running (RUNNING)
+2 min. Slurm Job 19352588 Status: Job running (RUNNING)
+3 min. Slurm Job 19352588 Status: Completed (COMPLETED)
 
 baseline dir = /scratch3/NCEPDEV/stmp/role.epic/ORT-stmp/role.epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_358810/std_base_std_base
+working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_1267906/std_base_std_base
 Checking test std_base results ....
 
 Moving baseline std_base files ....
@@ -67,4 +67,4 @@ Moving baseline std_base files ....
 Test std_base PASS
 
 run_test.sh: Test std_base Completed.
-run_test.sh: Test std_base Elapsed time 215 seconds.
+run_test.sh: Test std_base Elapsed time 214 seconds.

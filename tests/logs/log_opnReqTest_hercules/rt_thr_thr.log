@@ -1,6 +1,6 @@
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_2269527/thr_thr
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3687873/thr_thr
 Checking test thr results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -47,8 +47,8 @@ Checking test thr results ....
  Comparing RESTART/20210323.060000.sfc_data.tile5.nc .....USING NCCMP......OK
  Comparing RESTART/20210323.060000.sfc_data.tile6.nc .....USING NCCMP......OK
 
-  0: The total amount of wall time                        = 106.618452
-  0: The maximum resident set size (KB)                   = 1847500
+  0: The total amount of wall time                        = 84.235800
+  0: The maximum resident set size (KB)                   = 1865336
 
 Test thr PASS
 
