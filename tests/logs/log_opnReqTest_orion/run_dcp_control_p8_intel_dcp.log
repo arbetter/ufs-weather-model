@@ -1,23 +1,24 @@
-PID=4165941
+PID=1210798
 PATHRT: /work/noaa/epic/role-epic/jenkins/workspace/_Weather_Model_ORT_arbetter_PR-3/tests
-RUNDIR_ROOT: /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3605179
+RUNDIR_ROOT: /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_980693
 TEST_NAME: control_p8
 TEST_ID: dcp
 COMPILE_ID: std
 Test dcp Compare global control results with previous trunk version
 inputdir=FV3_input_data,NPX=97,NESTED=.false.
 rt_utils.sh: Submitting job on scheduler: slurm
-rt_utils.sh: Submitted Job. ID is 23569287.
+rt_utils.sh: Submitted Job. ID is 23606121.
 rt_utils.sh: Job is waiting to enter the queue...
-rt_utils.sh Job (23569287) is now in the queue.
-1 min. Slurm Job 23569287 Status: Job running (RUNNING)
-2 min. Slurm Job 23569287 Status: Job running (RUNNING)
-3 min. Slurm Job 23569287 Status: Job running (RUNNING)
-4 min. Slurm Job 23569287 Status: Job running (RUNNING)
-5 min. Slurm Job 23569287 Status: Completed (COMPLETED)
+rt_utils.sh Job (23606121) is now in the queue.
+1 min. Slurm Job 23606121 Status: Job running (RUNNING)
+2 min. Slurm Job 23606121 Status: Job running (RUNNING)
+3 min. Slurm Job 23606121 Status: Job running (RUNNING)
+4 min. Slurm Job 23606121 Status: Job running (RUNNING)
+5 min. Slurm Job 23606121 Status: Job running (RUNNING)
+6 min. Slurm Job 23606121 Status: Completed (COMPLETED)
 
 baseline dir = /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3605179/dcp_dcp
+working dir  = /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_980693/dcp_dcp
 Checking test dcp results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -66,4 +67,4 @@ Checking test dcp results ....
 Test dcp PASS
 
 run_test.sh: Test dcp Completed.
-run_test.sh: Test dcp Elapsed time 362 seconds.
+run_test.sh: Test dcp Elapsed time 444 seconds.
