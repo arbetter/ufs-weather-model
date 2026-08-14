@@ -1,21 +1,27 @@
-PID=2509510
+PID=42225
 PATHRT: /work2/noaa/epic/role-epic/jenkins/workspace/_Weather_Model_ORT_arbetter_PR-3/tests
-RUNDIR_ROOT: /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_2269527
+RUNDIR_ROOT: /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3687873
 TEST_NAME: control_p8
 TEST_ID: bit_base
 COMPILE_ID: bit
 Test bit_base Compare global control results with previous trunk version
 inputdir=FV3_input_data,NPX=97,NESTED=.false.
 rt_utils.sh: Submitting job on scheduler: slurm
-rt_utils.sh: Submitted Job. ID is 9563149.
+rt_utils.sh: Submitted Job. ID is 9563829.
 rt_utils.sh: Job is waiting to enter the queue...
-rt_utils.sh Job (9563149) is now in the queue.
-1 min. Slurm Job 9563149 Status: Job running (RUNNING)
-2 min. Slurm Job 9563149 Status: Job running (RUNNING)
-3 min. Slurm Job 9563149 Status: Completed (COMPLETED)
+rt_utils.sh Job (9563829) is now in the queue.
+1 min. Slurm Job 9563829 Status: Job waiting to start (PENDING)
+2 min. Slurm Job 9563829 Status: Job waiting to start (PENDING)
+3 min. Slurm Job 9563829 Status: Job waiting to start (PENDING)
+4 min. Slurm Job 9563829 Status: Job waiting to start (PENDING)
+5 min. Slurm Job 9563829 Status: Job waiting to start (PENDING)
+6 min. Slurm Job 9563829 Status: Job running (RUNNING)
+7 min. Slurm Job 9563829 Status: Job running (RUNNING)
+8 min. Slurm Job 9563829 Status: Job running (RUNNING)
+9 min. Slurm Job 9563829 Status: Completed (COMPLETED)
 
 baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_bit_base_intel
-working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_2269527/bit_base_bit_base
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_3687873/bit_base_bit_base
 Checking test bit_base results ....
 
 Moving baseline bit_base files ....
@@ -67,4 +73,4 @@ Moving baseline bit_base files ....
 Test bit_base PASS
 
 run_test.sh: Test bit_base Completed.
-run_test.sh: Test bit_base Elapsed time 217 seconds.
+run_test.sh: Test bit_base Elapsed time 581 seconds.
