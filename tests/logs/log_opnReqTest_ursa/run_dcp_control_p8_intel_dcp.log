@@ -1,65 +1,65 @@
-PID=3946755
+PID=804947
 PATHRT: /scratch3/NAGAPE/epic/role-epic/jenkins/workspace/_Weather_Model_ORT_arbetter_PR-3/tests
-RUNDIR_ROOT: /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_3817141
+RUNDIR_ROOT: /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_358810
 TEST_NAME: control_p8
 TEST_ID: dcp
 COMPILE_ID: std
 Test dcp Compare global control results with previous trunk version
 inputdir=FV3_input_data,NPX=97,NESTED=.false.
 rt_utils.sh: Submitting job on scheduler: slurm
-rt_utils.sh: Submitted Job. ID is 19342523.
+rt_utils.sh: Submitted Job. ID is 19349923.
 rt_utils.sh: Job is waiting to enter the queue...
-rt_utils.sh Job (19342523) is now in the queue.
-1 min. Slurm Job 19342523 Status: Job running (RUNNING)
-2 min. Slurm Job 19342523 Status: Job running (RUNNING)
-3 min. Slurm Job 19342523 Status: Completed (COMPLETED)
+rt_utils.sh Job (19349923) is now in the queue.
+1 min. Slurm Job 19349923 Status: Job running (RUNNING)
+2 min. Slurm Job 19349923 Status: Job running (RUNNING)
+3 min. Slurm Job 19349923 Status: Completed (COMPLETED)
 
 baseline dir = /scratch3/NCEPDEV/stmp/role.epic/ORT-stmp/role.epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_3817141/dcp_dcp
+working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_358810/dcp_dcp
 Checking test dcp results ....
- Comparing sfcf000.nc ............MISSING baseline
- Comparing sfcf021.nc ............MISSING baseline
- Comparing sfcf024.nc ............MISSING baseline
- Comparing atmf000.nc ............MISSING baseline
- Comparing atmf021.nc ............MISSING baseline
- Comparing atmf024.nc ............MISSING baseline
- Comparing GFSFLX.GrbF00 ............MISSING baseline
- Comparing GFSFLX.GrbF21 ............MISSING baseline
- Comparing GFSFLX.GrbF24 ............MISSING baseline
- Comparing GFSPRS.GrbF00 ............MISSING baseline
- Comparing GFSPRS.GrbF21 ............MISSING baseline
- Comparing GFSPRS.GrbF24 ............MISSING baseline
- Comparing RESTART/20210323.060000.coupler.res ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.tile1.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.tile2.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.tile3.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.tile4.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.tile5.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_core.res.tile6.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile1.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile2.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile3.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile4.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile5.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile6.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_tracer.res.tile1.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_tracer.res.tile2.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_tracer.res.tile3.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_tracer.res.tile4.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_tracer.res.tile5.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.fv_tracer.res.tile6.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.phy_data.tile1.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.phy_data.tile2.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.phy_data.tile3.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.phy_data.tile4.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.phy_data.tile5.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.phy_data.tile6.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.sfc_data.tile1.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.sfc_data.tile2.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.sfc_data.tile3.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.sfc_data.tile4.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.sfc_data.tile5.nc ............MISSING baseline
- Comparing RESTART/20210323.060000.sfc_data.tile6.nc ............MISSING baseline
+ Comparing sfcf000.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing sfcf021.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing sfcf024.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing atmf000.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing atmf021.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing atmf024.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing GFSFLX.GrbF00 .....USING CMP......NOT IDENTICAL
+ Comparing GFSFLX.GrbF21 .....USING CMP......NOT IDENTICAL
+ Comparing GFSFLX.GrbF24 .....USING CMP......NOT IDENTICAL
+ Comparing GFSPRS.GrbF00 .....USING CMP......NOT IDENTICAL
+ Comparing GFSPRS.GrbF21 .....USING CMP......NOT IDENTICAL
+ Comparing GFSPRS.GrbF24 .....USING CMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.coupler.res .....USING CMP......OK
+ Comparing RESTART/20210323.060000.fv_core.res.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_core.res.tile1.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_core.res.tile2.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_core.res.tile3.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_core.res.tile4.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_core.res.tile5.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_core.res.tile6.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile1.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile2.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile3.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile4.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile5.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_srf_wnd.res.tile6.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_tracer.res.tile1.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_tracer.res.tile2.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_tracer.res.tile3.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_tracer.res.tile4.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_tracer.res.tile5.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.fv_tracer.res.tile6.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.phy_data.tile1.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.phy_data.tile2.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.phy_data.tile3.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.phy_data.tile4.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.phy_data.tile5.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.phy_data.tile6.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.sfc_data.tile1.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.sfc_data.tile2.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.sfc_data.tile3.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.sfc_data.tile4.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.sfc_data.tile5.nc .....USING NCCMP......NOT IDENTICAL
+ Comparing RESTART/20210323.060000.sfc_data.tile6.nc .....USING NCCMP......NOT IDENTICAL
 Test dcp FAIL
 
