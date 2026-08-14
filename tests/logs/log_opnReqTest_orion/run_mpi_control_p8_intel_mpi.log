@@ -1,22 +1,22 @@
-PID=1159555
+PID=1669664
 PATHRT: /work/noaa/epic/role-epic/jenkins/workspace/_Weather_Model_ORT_arbetter_PR-3/tests
-RUNDIR_ROOT: /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_980693
+RUNDIR_ROOT: /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1470252
 TEST_NAME: control_p8
 TEST_ID: mpi
 COMPILE_ID: std
 Test mpi Compare global control results with previous trunk version
 inputdir=FV3_input_data,NPX=97,NESTED=.false.
 rt_utils.sh: Submitting job on scheduler: slurm
-rt_utils.sh: Submitted Job. ID is 23605980.
+rt_utils.sh: Submitted Job. ID is 23607331.
 rt_utils.sh: Job is waiting to enter the queue...
-rt_utils.sh Job (23605980) is now in the queue.
-1 min. Slurm Job 23605980 Status: Job running (RUNNING)
-2 min. Slurm Job 23605980 Status: Job running (RUNNING)
-3 min. Slurm Job 23605980 Status: Job running (RUNNING)
-4 min. Slurm Job 23605980 Status: Completed (COMPLETED)
+rt_utils.sh Job (23607331) is now in the queue.
+1 min. Slurm Job 23607331 Status: Job running (RUNNING)
+2 min. Slurm Job 23607331 Status: Job running (RUNNING)
+3 min. Slurm Job 23607331 Status: Job running (RUNNING)
+4 min. Slurm Job 23607331 Status: Completed (COMPLETED)
 
 baseline dir = /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/control_p8_std_base_intel
-working dir  = /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_980693/mpi_mpi
+working dir  = /work/noaa/epic/stmp/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_1470252/mpi_mpi
 Checking test mpi results ....
  Comparing sfcf000.nc .....USING NCCMP......OK
  Comparing sfcf021.nc .....USING NCCMP......OK
@@ -65,4 +65,4 @@ Checking test mpi results ....
 Test mpi PASS
 
 run_test.sh: Test mpi Completed.
-run_test.sh: Test mpi Elapsed time 331 seconds.
+run_test.sh: Test mpi Elapsed time 301 seconds.
