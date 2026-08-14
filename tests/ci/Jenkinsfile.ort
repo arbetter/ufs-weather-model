@@ -104,7 +104,7 @@ pipeline {
                   currentBuild.result = 'FAILURE'
                   region_result = 'FAILURE'
                 }
-                echo "region_result = ${region_result}
+                echo "region_result = ${region_result}"
                 } //script
 
               } // End of steps
@@ -153,7 +153,7 @@ pipeline {
                   currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
-                echo "control_result = ${control_result}
+                echo "control_result = ${control_result}"
                 } //script
               } // End of steps
             } // End of control_p8 stage
@@ -585,7 +585,7 @@ pipeline {
                   currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
-                echo "control_result = ${control_result}
+                echo "control_result = ${control_result}"
                 } //script
               } // End of steps
             } // End of stage control_p8
