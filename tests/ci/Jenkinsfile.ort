@@ -164,7 +164,7 @@ pipeline {
                 echo "test for fail"
                 echo "region_result = ${region_result}"
                 echo "control_result = ${control_result}"
-                if ( ${region_result} == 'FAILURE' || ${control_result} == 'FAILURE') {
+                if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Ursa ORT Failed"
                    currentBuild.result = 'FAILURE'
                 } else {
@@ -379,7 +379,7 @@ pipeline {
                 echo "test for fail"
                 echo "region_result = ${region_result}"
                 echo "control_result = ${control_result}"
-                if ( ${region_result} == 'FAILURE' || ${control_result} == 'FAILURE') {
+                if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Hercules ORT Failed"
                    currentBuild.result = 'FAILURE'
                 } else {
@@ -597,7 +597,7 @@ pipeline {
                 echo "test for fail"
                 echo "region_result = ${region_result}"
                 echo "control_result = ${control_result}"
-                if ( ${region_result} == 'FAILURE' || ${control_result} == 'FAILURE') {
+                if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Orion ORT Failed"
                    currentBuild.result = 'FAILURE'
                 } else {
