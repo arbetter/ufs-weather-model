@@ -98,11 +98,13 @@ pipeline {
                 echo "Ursa regional_control exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
+                  region_result = 'SUCCESS'
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
                   currentBuild.result = 'FAILURE'
                   region_result = 'FAILURE'
                 }
+                echo "region_result = ${region_result}
                 } //script
 
               } // End of steps
@@ -145,11 +147,13 @@ pipeline {
                 echo "Ursa control_p8 exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
+                  control_result = 'SUCCESS'
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
                   currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
+                echo "control_result = ${control_result}
                 } //script
               } // End of steps
             } // End of control_p8 stage
@@ -158,12 +162,14 @@ pipeline {
               steps{
                 script{
                 echo "test for fail"
-                if (region_result == 'FAILURE' || control_result == 'FAILURE') {
+                echo "region_result = ${region_result}"
+                echo "control_result = ${control_result}"
+                if ( ${region_result} == 'FAILURE' || {control_result} == 'FAILURE') {
                    echo "Ursa ORT Failed"
                    currentBuild.result = 'FAILURE'
                 } else {
                    echo "Ursa ORT Success"
-                  currentBuild.result = 'SUCCESS'
+                   currentBuild.result = 'SUCCESS'
                 }
                 } // script
                 sh '''
@@ -307,11 +313,13 @@ pipeline {
                 echo "Hercules regional_control exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
+                  region_result = 'SUCCESS'
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
                   currentBuild.result = 'FAILURE'
                   region_result = 'FAILURE'
                 }
+                echo "region_result = ${region_result}"
                 } //script
 
               } // End of steps
@@ -359,6 +367,7 @@ pipeline {
                   currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
+                echo "control_result = ${control_result}"
                 } //script
               } // End of steps
             } // End of stage control_p8
@@ -366,6 +375,18 @@ pipeline {
             // Stage to finalize Hercules operations
             stage("Finalize Hercules"){ 
               steps{
+                script{
+                echo "test for fail"
+                echo "region_result = ${region_result}"
+                echo "control_result = ${control_result}"
+                if ( ${region_result} == 'FAILURE' || {control_result} == 'FAILURE') {
+                   echo "Hercules ORT Failed"
+                   currentBuild.result = 'FAILURE'
+                } else {
+                   echo "Hercules ORT Success"
+                   currentBuild.result = 'SUCCESS'
+                }
+                } // script
                 sh '''
                   export machine=${NODE_NAME}
                   export PATH=$PATH:~/bin
@@ -509,11 +530,13 @@ pipeline {
                 echo "Orion regional_control exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
+                  region_result = 'SUCCESS'
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
                   currentBuild.result = 'FAILURE'
                   region_result = 'FAILURE'
                 }
+                echo "region_result = ${region_result}"
                 } //script
 
               } // End of steps
@@ -556,11 +579,13 @@ pipeline {
                 echo "Orion control_p8 exit code: ${exitCode}"
                 if (exitCode == 0) {
                   echo "Pipeline continuing normally."
+                  control_result = 'SUCCESS'
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
                   currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
+                echo "control_result = ${control_result}
                 } //script
               } // End of steps
             } // End of stage control_p8
@@ -568,6 +593,18 @@ pipeline {
             // Stage to finalize Orion operations
             stage("Finalize Orion"){ //
               steps{
+                script{
+                echo "test for fail"
+                echo "region_result = ${region_result}"
+                echo "control_result = ${control_result}"
+                if ( ${region_result} == 'FAILURE' || {control_result} == 'FAILURE') {
+                   echo "Orion ORT Failed"
+                   currentBuild.result = 'FAILURE'
+                } else {
+                   echo "Orion ORT Success"
+                   currentBuild.result = 'SUCCESS'
+                }
+                } // script
                 sh '''
                   export machine=${NODE_NAME}
                   export PATH=$PATH:~/bin
