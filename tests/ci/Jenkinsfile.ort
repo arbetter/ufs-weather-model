@@ -291,7 +291,7 @@ pipeline {
                 checkout scm
                 script{
                 stageResult = 'SUCCESS'
-                catchError(buildResult: 'SUCCESS', stageResult='FAILURE'){
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                   sh '''
                   set +e
 
