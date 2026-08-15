@@ -207,6 +207,7 @@ pipeline {
 
               post{
                 always{
+                  echo "stageResult $stageResult"
                   sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -432,6 +433,7 @@ pipeline {
 
               post{
                 always{
+                  echo "stageResult $stageResult"
                   sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -658,7 +660,7 @@ pipeline {
 
               post{
                 always{
-
+                  echo "stageResult $stageResult"
                   sh '''
                   set +e
                   export machine=${NODE_NAME}
