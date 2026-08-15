@@ -251,10 +251,12 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
                     git status
-                    git commit -m "Ursa ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git commit -m "Ursa ORT FAILED.\nregional_dir=${regional_dir}\ncontrol_dir=${control_dir}\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
@@ -287,8 +289,9 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                def exitCode = sh(
-                script: '''
+                stageResult = 'SUCCESS'
+                catchError(buildResult: 'SUCCESS', stageResult='FAILURE'){
+                  sh '''
                   set +e
 
                     log_error() {
@@ -308,16 +311,14 @@ pipeline {
                   cd ..
                   pwd
                    [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0 
-                  ''',
-                  returnStatus: true
-                ) // exitCode
+                  ''' 
+                  } // catchError
                 echo "Hercules regional_control exit code: ${exitCode}"
-                if (exitCode == 0) {
+                if (stageResult == 'SUCCESS') {
                   echo "Pipeline continuing normally."
                   region_result = 'SUCCESS'
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'FAILURE'
                   region_result = 'FAILURE'
                 }
                 echo "region_result = ${region_result}"
@@ -331,8 +332,9 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                def exitCode = sh(
-                script: '''
+                stageResult= 'SUCCESS'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                  sh '''
                   set +e
 
                     log_error() {
@@ -357,15 +359,13 @@ pipeline {
                   cd ..
                   pwd
                   [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0    
-                  ''',
-                  returnStatus: true
-                ) // exitCode
+                  '''
+                  } // catchError
                 echo "Hercules control_p8 exit code: ${exitCode}"
-                if (exitCode == 0) {
+                if (stageResult == 'SUCCESS') {
                   echo "Pipeline continuing normally."
                 } else {
                   echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'FAILURE'
                   control_result = 'FAILURE'
                 }
                 echo "control_result = ${control_result}"
@@ -467,10 +467,12 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_hercules.log | cut -c 1-92)
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_control_p8_hercules.log | cut -c 1-92)
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_hercules.log logs/OpnReqTests_regional_control_hercules.log
                     git status
-                    git commit -m "Hercules ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git commit -m "Hercules ORT FAILED.\nregional_dir=${regional_dir}\ncontrol_dir=${control_dir}\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false                    
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
@@ -595,10 +597,6 @@ pipeline {
             // Stage to finalize Orion operations
             stage("Finalize Orion"){ //
               steps{
-                script{
-                echo "test for fail"
-                echo "region_result = ${region_result}"
-                echo "control_result = ${control_result}"
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Orion ORT Failed"
                    currentBuild.result = 'FAILURE'
@@ -606,7 +604,6 @@ pipeline {
                    echo "Orion ORT Success"
                    currentBuild.result = 'SUCCESS'
                 }
-                } // script
                 sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -637,6 +634,12 @@ pipeline {
 
               post{
                 always{
+                script{
+                echo "test for fail"
+                echo "region_result = ${region_result}"
+                echo "control_result = ${control_result}"
+
+                } // script
                   sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -686,10 +689,12 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_orion.log | cut -c 1-95)
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_control_p8_orion.log | cut -c 1-95)
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_orion.log logs/OpnReqTests_regional_control_orion.log
                     git status
-                    git commit -m "Orion ORT FAILED.\n\n\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
+                    git commit -m "Orion ORT FAILED.\nregional_dir=${regional_dir}\ncontrol_dir=${control_dir}\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
                     git config pull.rebase false
                     git pull sshorigin $FORK_BRANCH
                     git push sshorigin HEAD:$FORK_BRANCH
