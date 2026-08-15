@@ -3,6 +3,11 @@ pipeline {
   options{
     disableConcurrentBuilds()
   }
+   environment {
+      ursa_status = 'SUCCESS'
+      hercules_status = 'SUCCESS'
+      orion_status = 'SUCCESS'
+     }
   stages {
 
     stage('Run ORTs') {
@@ -171,9 +176,12 @@ pipeline {
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Ursa ORT Failed (Unstable)"
                    currentBuild.result = "UNSTABLE"
+                   stageResult = "UNSTABLE"
+                   ursa_status = 'UNSTABLE'
                 } else {
                    echo "Ursa ORT Success"
                    currentBuild.result = "SUCCESS"
+                   stageResult = "SUCCESS"
                 } 
                 } // script
                 sh '''
@@ -236,8 +244,8 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
-                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  export regional_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  export control_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
                     git status
@@ -401,9 +409,12 @@ pipeline {
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Hercules ORT Failed (Unstable)"
                    currentBuild.result='UNSTABLE'
+                   stageResult="UNSTABLE"
+                   hercules_status='UNSTABLE'
                 } else {
                    echo "Hercules ORT Success"
                    currentBuild.result='SUCCESS'
+                   stageResult = 'SUCCESS'
                 } 
                 } // script
                 sh '''
@@ -466,8 +477,8 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_hercules.log | cut -c 1-92)
-                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_control_p8_hercules.log | cut -c 1-92)
+                  export regional_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_hercules.log | cut -c 1-92)
+                  export control_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_control_p8_hercules.log | cut -c 1-92)
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_hercules.log logs/OpnReqTests_regional_control_hercules.log
                     git status
@@ -631,9 +642,12 @@ pipeline {
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Orion ORT Failed (Unstable)"
                    currentBuild.result='UNSTABLE'
+                   stageResult='UNSTABLE'
+                   orion_status='UNSTABLE'
                 } else {
                    echo "Orion ORT Success"
                    currentBuild.result='SUCCESS'
+                   stageResult='SUCCESS'
                 } 
                 } // script
                   sh '''
@@ -696,8 +710,8 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_orion.log | cut -c 1-95)
-                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 OpnReqTests_control_p8_orion.log | cut -c 1-95)
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_orion.log | cut -c 1-95)
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_control_p8_orion.log | cut -c 1-95)
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_orion.log logs/OpnReqTests_regional_control_orion.log
                     git status
@@ -747,10 +761,20 @@ pipeline {
             GITHUB_TOKEN = credentials('GithubJenkinsNew')
           }
       steps{
-            sh '''
-               echo "Testing concluded for ${GIT_URL}"
-            '''
+          script{
+            echo "test for fail"
+            echo "ursa_status = ${ursa_status}"
+            echo "hercules_status = ${hercules_status}"
+            echo "orion_status = ${orion_status}"
+            if ( ursa_status == 'UNSTABLE' || hercules_status == 'UNSTABLE' || orion_status == 'UNSTABLE') {
+                echo "ORT Run Failed (Unstalbe)"
+                currentBuild.result='UNSTABLE'
+                stageResult='UNSTABLE'
+                } 
+            echo "Testing concluded for ${GIT_URL}"
+            } // script
            }
+
       post {
         always{
                sh '''
