@@ -244,8 +244,8 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  export regional_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
-                  export control_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
                     git status
@@ -477,8 +477,8 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  export regional_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_regional_control_hercules.log | cut -c 1-92)
-                  export control_dir=$(egrep logs/opnReqTest_[1-9]* -m 1 OpnReqTests_control_p8_hercules.log | cut -c 1-92)
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_hercules.log | cut -c 1-92)
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_control_p8_hercules.log | cut -c 1-92)
                   cd $WORKSPACE/tests/
                     git add logs/OpnReqTests_control_p8_hercules.log logs/OpnReqTests_regional_control_hercules.log
                     git status
