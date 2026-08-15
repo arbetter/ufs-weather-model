@@ -1,3 +1,80 @@
-Sat Aug 15 15:04:55 CDT 2026
+Sat Aug 15 15:49:05 CDT 2026
 Start Operation Requirement Test
 
+
+baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_bit_base_intel
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_911262/bit_base_bit_base
+Checking test bit_base results ....
+Moving baseline bit_base files ....
+ Moving dynf000.nc .........OK
+ Moving dynf006.nc .........OK
+ Moving phyf000.nc .........OK
+ Moving phyf006.nc .........OK
+ Moving PRSLEV.GrbF00 .........OK
+ Moving PRSLEV.GrbF06 .........OK
+ Moving NATLEV.GrbF00 .........OK
+ Moving NATLEV.GrbF06 .........OK
+
+  0: The total amount of wall time                        = 379.718095
+  0: The maximum resident set size (KB)                   = 1483476
+
+Test bit_base PASS
+
+
+baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_std_base_intel
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_911262/dcp_dcp
+Checking test dcp results ....
+ Comparing dynf000.nc .....USING NCCMP......OK
+ Comparing dynf006.nc .....USING NCCMP......OK
+ Comparing phyf000.nc .....USING NCCMP......OK
+ Comparing phyf006.nc .....USING NCCMP......OK
+ Comparing PRSLEV.GrbF00 .....USING CMP......OK
+ Comparing PRSLEV.GrbF06 .....USING CMP......OK
+ Comparing NATLEV.GrbF00 .....USING CMP......OK
+ Comparing NATLEV.GrbF06 .....USING CMP......OK
+
+  0: The total amount of wall time                        = 257.954786
+  0: The maximum resident set size (KB)                   = 1212372
+
+Test dcp PASS
+
+
+baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_std_base_intel
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_911262/std_base_std_base
+Checking test std_base results ....
+Moving baseline std_base files ....
+ Moving dynf000.nc .........OK
+ Moving dynf006.nc .........OK
+ Moving phyf000.nc .........OK
+ Moving phyf006.nc .........OK
+ Moving PRSLEV.GrbF00 .........OK
+ Moving PRSLEV.GrbF06 .........OK
+ Moving NATLEV.GrbF00 .........OK
+ Moving NATLEV.GrbF06 .........OK
+
+  0: The total amount of wall time                        = 371.016830
+  0: The maximum resident set size (KB)                   = 1205492
+
+Test std_base PASS
+
+
+baseline dir = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_std_base_intel
+working dir  = /work2/noaa/epic/role-epic/stmp/role-epic/FV3_OPNREQ_TEST/opnReqTest_911262/thr_thr
+Checking test thr results ....
+ Comparing dynf000.nc .....USING NCCMP......OK
+ Comparing dynf006.nc .....USING NCCMP......OK
+ Comparing phyf000.nc .....USING NCCMP......OK
+ Comparing phyf006.nc .....USING NCCMP......OK
+ Comparing PRSLEV.GrbF00 .....USING CMP......OK
+ Comparing PRSLEV.GrbF06 .....USING CMP......OK
+ Comparing NATLEV.GrbF00 .....USING CMP......OK
+ Comparing NATLEV.GrbF06 .....USING CMP......OK
+
+  0: The total amount of wall time                        = 297.269184
+  0: The maximum resident set size (KB)                   = 1220888
+
+Test thr PASS
+
+OPERATION REQUIREMENT TEST WAS SUCCESSFUL
+Sat Aug 15 16:37:40 CDT 2026
+Elapsed time: 00h:48m:36s. Have a nice day!
