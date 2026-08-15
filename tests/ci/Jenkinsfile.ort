@@ -102,7 +102,7 @@ pipeline {
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    error "Handling Ursa regional_control failure in groovy, changing stage color"
+                    error "Handling Ursa regional_control failure in groovy, changing stage color to unstable"
                 }
                   region_result = 'FAILURE'
                 }
@@ -153,7 +153,7 @@ pipeline {
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    error "Handling Ursa failure in groovy, changing stage color"
+                    error "Handling Ursa failure in groovy, changing stage color to unstable"
                 }
                   control_result = 'FAILURE'
                 }
@@ -170,7 +170,7 @@ pipeline {
                 echo "control_result = ${control_result}"
                 buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
-                   echo "Ursa ORT Failed"
+                   echo "Ursa ORT Failed (Unstable)"
                    stageResult='UNSTABLE'
                 } else {
                    echo "Ursa ORT Success"
@@ -326,7 +326,7 @@ pipeline {
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    error "Handling Hercules regional_control failure in groovy, changing stage color"
+                    error "Handling Hercules regional_control failure in groovy, changing stage color to unstable"
                 }
                   region_result = 'FAILURE'
                 }
@@ -377,7 +377,7 @@ pipeline {
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    error "Handling Hercules control_p8 failure in groovy, changing stage color"
+                    error "Handling Hercules control_p8 failure in groovy, changing stage color to unstable"
                 }
                   control_result = 'FAILURE'
                 }
@@ -395,7 +395,7 @@ pipeline {
                 echo "control_result = ${control_result}"
                 buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
-                   echo "Hercules ORT Failed"
+                   echo "Hercules ORT Failed (Unstable)"
                    stageResult='UNSTABLE'
                 } else {
                    echo "Hercules ORT Success"
@@ -552,7 +552,7 @@ pipeline {
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    error "Handling Orion regional_control failure in groovy, changing stage color"
+                    error "Handling Orion regional_control failure in groovy, changing stage color to Unstable"
                 }
                   region_result = 'FAILURE'
                 }
@@ -603,7 +603,7 @@ pipeline {
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
                 catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
-                    error "Handling Orion regional_control failure in groovy, changing stage color"
+                    error "Handling Orion regional_control failure in groovy, changing stage color to Unstable"
                 }
                   control_result = 'FAILURE'
                 }
@@ -621,7 +621,7 @@ pipeline {
                 echo "control_result = ${control_result}"
                 buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
-                   echo "Orion ORT Failed"
+                   echo "Orion ORT Failed (Unstable)"
                    stageResult='UNSTABLE'
                 } else {
                    echo "Orion ORT Success"
