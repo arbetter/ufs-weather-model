@@ -91,7 +91,7 @@ pipeline {
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
                   cd ..
                   pwd
-                  [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0 
+                  [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 - z|| exit 0 
                   ''',
                   returnStatus: true
                 ) // exitCode
@@ -134,7 +134,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -z || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_ursa.log $WORKSPACE/..
@@ -164,13 +164,14 @@ pipeline {
                 echo "test for fail"
                 echo "region_result = ${region_result}"
                 echo "control_result = ${control_result}"
+                buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Ursa ORT Failed"
-                   currentBuild.result = 'FAILURE'
+                   stageResult='FAILURE'
                 } else {
                    echo "Ursa ORT Success"
-                   currentBuild.result = 'SUCCESS'
-                }
+                   stageResult='SUCCESS'
+                } 
                 } // script
                 sh '''
                   set +e
@@ -305,7 +306,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -z || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   mv OpnReqTests_regional_control_hercules.log $WORKSPACE/..
                   cd ..
@@ -352,7 +353,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -z || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_hercules.log $WORKSPACE/..
@@ -380,13 +381,14 @@ pipeline {
                 echo "test for fail"
                 echo "region_result = ${region_result}"
                 echo "control_result = ${control_result}"
+                buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Hercules ORT Failed"
-                   currentBuild.result = 'FAILURE'
+                   stageResult='FAILURE'
                 } else {
                    echo "Hercules ORT Success"
-                   currentBuild.result = 'SUCCESS'
-                }
+                   stageResult='SUCCESS'
+                } 
                 } // script
                 sh '''
                   set +e
@@ -521,7 +523,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -z || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_orion.log $WORKSPACE/..
@@ -570,7 +572,7 @@ pipeline {
                   echo "GIT_REPO_NAME ${GIT_REPO_NAME}"
                   pwd
 #                 ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp
-                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n control_p8 -a ${ACCNR} -c std,dbg,bit,mpi,rst,thr,dcp -z || log_error OpenReqTest $LINENO
                   cd logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_control_p8_orion.log $WORKSPACE/..
@@ -597,14 +599,20 @@ pipeline {
             // Stage to finalize Orion operations
             stage("Finalize Orion"){ //
               steps{
+                script{
+                echo "test for fail"
+                echo "region_result = ${region_result}"
+                echo "control_result = ${control_result}"
+                buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Orion ORT Failed"
-                   currentBuild.result = 'FAILURE'
+                   stageResult='FAILURE'
                 } else {
                    echo "Orion ORT Success"
-                   currentBuild.result = 'SUCCESS'
-                }
-                sh '''
+                   stageResult='SUCCESS'
+                } 
+                } // script
+                  sh '''
                   set +e
                   export machine=${NODE_NAME}
                   export PATH=$PATH:~/bin
@@ -634,12 +642,7 @@ pipeline {
 
               post{
                 always{
-                script{
-                echo "test for fail"
-                echo "region_result = ${region_result}"
-                echo "control_result = ${control_result}"
 
-                } // script
                   sh '''
                   set +e
                   export machine=${NODE_NAME}
