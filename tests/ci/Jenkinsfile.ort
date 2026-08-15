@@ -477,9 +477,11 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
+                  
+                  cd $WORKSPACE/tests/
                   export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_hercules.log | cut -c 1-92)
                   export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_control_p8_hercules.log | cut -c 1-92)
-                  cd $WORKSPACE/tests/
+
                     git add logs/OpnReqTests_control_p8_hercules.log logs/OpnReqTests_regional_control_hercules.log
                     git status
                     git commit -m "Hercules ORT FAILED.\nregional_dir=${regional_dir}\ncontrol_dir=${control_dir}\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
@@ -710,9 +712,11 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
+                  
+                  cd $WORKSPACE/tests/
                   export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_orion.log | cut -c 1-95)
                   export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_control_p8_orion.log | cut -c 1-95)
-                  cd $WORKSPACE/tests/
+
                     git add logs/OpnReqTests_control_p8_orion.log logs/OpnReqTests_regional_control_orion.log
                     git status
                     git commit -m "Orion ORT FAILED.\nregional_dir=${regional_dir}\ncontrol_dir=${control_dir}\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
