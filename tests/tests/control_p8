@@ -58,6 +58,7 @@ export_tiled
 export_ugwpv1
 CCPP_SUITE=FV3_GFS_v17_p8_ugwpv1
 
+NPZ=127
 NPZP=128
 SYEAR=2021
 SMONTH=03
