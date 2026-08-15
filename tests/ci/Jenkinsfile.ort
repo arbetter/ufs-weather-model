@@ -244,9 +244,11 @@ pipeline {
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
                   export GIT_REPO_NAME=$(echo $GIT_URL | cut -d '/' -f5 | cut -d '.' -f1)
-                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
-                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  
                   cd $WORKSPACE/tests/
+                  export regional_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_regional_control_ursa.log | cut -c 1-101 )
+                  export control_dir=$(egrep opnReqTest_[1-9]* -m 1 logs/OpnReqTests_control_p8_ursa.log | cut -c 1-101 )
+
                     git add logs/OpnReqTests_control_p8_ursa.log logs/OpnReqTests_regional_control_ursa.log
                     git status
                     git commit -m "Ursa ORT FAILED.\nregional_dir=${regional_dir}\ncontrol_dir=${control_dir}\n on-behalf-of @ufs-community <ecc.platform@noaa.gov>"
