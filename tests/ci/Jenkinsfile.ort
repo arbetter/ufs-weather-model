@@ -85,7 +85,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_ursa.log $WORKSPACE/..
@@ -101,7 +101,7 @@ pipeline {
                   region_result = 'SUCCESS'
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     error "Handling Ursa regional_control failure in groovy, changing stage color"
                 }
                   region_result = 'FAILURE'
@@ -152,7 +152,7 @@ pipeline {
                   control_result = 'SUCCESS'
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     error "Handling Ursa failure in groovy, changing stage color"
                 }
                   control_result = 'FAILURE'
@@ -171,7 +171,7 @@ pipeline {
                 buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Ursa ORT Failed"
-                   stageResult='FAILURE'
+                   stageResult='UNSTABLE'
                 } else {
                    echo "Ursa ORT Success"
                    stageResult='SUCCESS'
@@ -246,7 +246,7 @@ pipeline {
                     '''
                    }
 
-              failure{
+              unstable{
                     sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -309,7 +309,7 @@ pipeline {
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
                   # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_hercules.log $WORKSPACE/..
@@ -325,7 +325,7 @@ pipeline {
                   region_result = 'SUCCESS'
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     error "Handling Hercules regional_control failure in groovy, changing stage color"
                 }
                   region_result = 'FAILURE'
@@ -376,7 +376,7 @@ pipeline {
                   control_result = 'SUCCESS'
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     error "Handling Hercules control_p8 failure in groovy, changing stage color"
                 }
                   control_result = 'FAILURE'
@@ -396,7 +396,7 @@ pipeline {
                 buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Hercules ORT Failed"
-                   stageResult='FAILURE'
+                   stageResult='UNSTABLE'
                 } else {
                    echo "Hercules ORT Success"
                    stageResult='SUCCESS'
@@ -471,7 +471,7 @@ pipeline {
                     '''
                    }
 
-              failure{
+              unstable{
                     sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -551,7 +551,7 @@ pipeline {
                   region_result = 'SUCCESS'
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     error "Handling Orion regional_control failure in groovy, changing stage color"
                 }
                   region_result = 'FAILURE'
@@ -602,7 +602,7 @@ pipeline {
                   control_result = 'SUCCESS'
                 } else {
                 // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                catchError(buildResult: 'SUCCESS', stageResult: 'UNSTABLE') {
                     error "Handling Orion regional_control failure in groovy, changing stage color"
                 }
                   control_result = 'FAILURE'
@@ -622,7 +622,7 @@ pipeline {
                 buildResult='SUCCESS'
                 if ( region_result == 'FAILURE' || control_result == 'FAILURE') {
                    echo "Orion ORT Failed"
-                   stageResult='FAILURE'
+                   stageResult='UNSTABLE'
                 } else {
                    echo "Orion ORT Success"
                    stageResult='SUCCESS'
@@ -698,7 +698,7 @@ pipeline {
                     '''
                    }
 
-              failure{
+              unstable{
                     sh '''
                   set +e
                   export machine=${NODE_NAME}
@@ -765,7 +765,7 @@ pipeline {
           )
         } // End of success
      
-        failure {
+        unstable {
           slackSend (
             channel:   '#jenkins-notifications',   
             color:   'danger',   
