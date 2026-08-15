@@ -100,8 +100,10 @@ pipeline {
                   echo "Pipeline continuing normally."
                   region_result = 'SUCCESS'
                 } else {
-                  echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'FAILURE'
+                // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    error "Handling Ursa regional_control failure in groovy, changing stage color"
+                }
                   region_result = 'FAILURE'
                 }
                 echo "region_result = ${region_result}"
@@ -149,8 +151,10 @@ pipeline {
                   echo "Pipeline continuing normally."
                   control_result = 'SUCCESS'
                 } else {
-                  echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'FAILURE'
+                // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    error "Handling Ursa failure in groovy, changing stage color"
+                }
                   control_result = 'FAILURE'
                 }
                 echo "control_result = ${control_result}"
@@ -290,9 +294,8 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                stageResult = 'SUCCESS'
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
-                  sh '''
+                def exitCode = sh(
+                script: '''
                   set +e
 
                     log_error() {
@@ -301,25 +304,30 @@ pipeline {
 
                   git submodule update --init --recursive
                   cd tests/fv3_conf
-                  sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_hercules
+                  sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
                   cd ..
                   export ACCNR=epic
                   pwd
 #                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr
-                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr -x || log_error OpenReqTest $LINENO
+                  ./opnReqTest -n regional_control -a ${ACCNR} -c bit,dcp,thr || log_error OpenReqTest $LINENO
                   cd $WORKSPACE/tests/logs/
+                  # change "cp" to "mv" to be tighter on logfiles existence (prevents using logfiles from a previous run)
                   mv OpnReqTests_regional_control_hercules.log $WORKSPACE/..
                   cd ..
                   pwd
-                   [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0 
-                  ''' 
-                  } // catchError
-                echo "Hercules regional_control exit code: ${exitCode}"
-                if (stageResult == 'SUCCESS') {
+                  [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 - z|| exit 0 
+                  ''',
+                  returnStatus: true
+                ) // exitCode
+                echo "Ursa regional_control exit code: ${exitCode}"
+                if (exitCode == 0) {
                   echo "Pipeline continuing normally."
                   region_result = 'SUCCESS'
                 } else {
-                  echo "Handling failure in Groovy. Changing stage color..."
+                // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    error "Handling Hercules regional_control failure in groovy, changing stage color"
+                }
                   region_result = 'FAILURE'
                 }
                 echo "region_result = ${region_result}"
@@ -333,9 +341,8 @@ pipeline {
                 cleanWs()
                 checkout scm
                 script{
-                stageResult= 'SUCCESS'
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                  sh '''
+                def exitCode = sh(
+                script: '''
                   set +e
 
                     log_error() {
@@ -344,7 +351,7 @@ pipeline {
 
                   git submodule update --init --recursive
                   cd tests/fv3_conf
-                  sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_hercules
+                  sed 's/#SBATCH --time=.*/#SBATCH --time=02:00:00/g' -i fv3_slurm.IN_ursa
                   cd ..
                   export ACCNR=epic
                   export GIT_OWNER=$(echo $GIT_URL | cut -d '/' -f4)
@@ -360,13 +367,18 @@ pipeline {
                   cd ..
                   pwd
                   [ -s $WORKSPACE/tests/error.log ] && rm $WORKSPACE/tests/error.log && exit 1 || exit 0    
-                  '''
-                  } // catchError
+                  ''',
+                  returnStatus: true
+                ) // exitCode
                 echo "Hercules control_p8 exit code: ${exitCode}"
-                if (stageResult == 'SUCCESS') {
+                if (exitCode == 0) {
                   echo "Pipeline continuing normally."
+                  control_result = 'SUCCESS'
                 } else {
-                  echo "Handling failure in Groovy. Changing stage color..."
+                // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    error "Handling Hercules control_p8 failure in groovy, changing stage color"
+                }
                   control_result = 'FAILURE'
                 }
                 echo "control_result = ${control_result}"
@@ -538,8 +550,10 @@ pipeline {
                   echo "Pipeline continuing normally."
                   region_result = 'SUCCESS'
                 } else {
-                  echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'FAILURE'
+                // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    error "Handling Orion regional_control failure in groovy, changing stage color"
+                }
                   region_result = 'FAILURE'
                 }
                 echo "region_result = ${region_result}"
@@ -587,8 +601,10 @@ pipeline {
                   echo "Pipeline continuing normally."
                   control_result = 'SUCCESS'
                 } else {
-                  echo "Handling failure in Groovy. Changing stage color..."
-                  currentBuild.result = 'FAILURE'
+                // Suppress build failure: Mark STAGE as failed, but keep BUILD as success
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    error "Handling Orion regional_control failure in groovy, changing stage color"
+                }
                   control_result = 'FAILURE'
                 }
                 echo "control_result = ${control_result}"
