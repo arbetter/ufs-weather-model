@@ -1,9 +1,9 @@
-Sat Aug 15 20:48:37 UTC 2026
+Sun Aug 16 00:51:57 UTC 2026
 Start Operation Requirement Test
 
 
 baseline dir = /scratch3/NCEPDEV/stmp/role.epic/ORT-stmp/role.epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_bit_base_intel
-working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_3188086/bit_base_bit_base
+working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_1220409/bit_base_bit_base
 Checking test bit_base results ....
 Moving baseline bit_base files ....
  Moving dynf000.nc .........OK
@@ -15,14 +15,14 @@ Moving baseline bit_base files ....
  Moving NATLEV.GrbF00 .........OK
  Moving NATLEV.GrbF06 .........OK
 
-  0: The total amount of wall time                        = 302.571130
-  0: The maximum resident set size (KB)                   = 2080736
+  0: The total amount of wall time                        = 305.781222
+  0: The maximum resident set size (KB)                   = 2076492
 
 Test bit_base PASS
 
 
 baseline dir = /scratch3/NCEPDEV/stmp/role.epic/ORT-stmp/role.epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_std_base_intel
-working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_3188086/dcp_dcp
+working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_1220409/dcp_dcp
 Checking test dcp results ....
  Comparing dynf000.nc .....USING NCCMP......OK
  Comparing dynf006.nc .....USING NCCMP......OK
@@ -33,14 +33,14 @@ Checking test dcp results ....
  Comparing NATLEV.GrbF00 .....USING CMP......OK
  Comparing NATLEV.GrbF06 .....USING CMP......OK
 
-  0: The total amount of wall time                        = 217.326642
-  0: The maximum resident set size (KB)                   = 1712144
+  0: The total amount of wall time                        = 207.036429
+  0: The maximum resident set size (KB)                   = 1709080
 
 Test dcp PASS
 
 
 baseline dir = /scratch3/NCEPDEV/stmp/role.epic/ORT-stmp/role.epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_std_base_intel
-working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_3188086/std_base_std_base
+working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_1220409/std_base_std_base
 Checking test std_base results ....
 Moving baseline std_base files ....
  Moving dynf000.nc .........OK
@@ -52,14 +52,14 @@ Moving baseline std_base files ....
  Moving NATLEV.GrbF00 .........OK
  Moving NATLEV.GrbF06 .........OK
 
-  0: The total amount of wall time                        = 210.776850
-  0: The maximum resident set size (KB)                   = 1718628
+  0: The total amount of wall time                        = 208.871881
+  0: The maximum resident set size (KB)                   = 1718100
 
 Test std_base PASS
 
 
 baseline dir = /scratch3/NCEPDEV/stmp/role.epic/ORT-stmp/role.epic/FV3_OPNREQ_TEST/OPNREQ_TEST/regional_control_std_base_intel
-working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_3188086/thr_thr
+working dir  = /scratch3/NCEPDEV/stmp/role.epic/ORT-ptmp/role.epic/FV3_OPNREQ_TEST/opnReqTest_1220409/thr_thr
 Checking test thr results ....
  Comparing dynf000.nc .....USING NCCMP......OK
  Comparing dynf006.nc .....USING NCCMP......OK
@@ -70,11 +70,11 @@ Checking test thr results ....
  Comparing NATLEV.GrbF00 .....USING CMP......OK
  Comparing NATLEV.GrbF06 .....USING CMP......OK
 
-  0: The total amount of wall time                        = 208.043410
-  0: The maximum resident set size (KB)                   = 1718752
+  0: The total amount of wall time                        = 206.927875
+  0: The maximum resident set size (KB)                   = 1721184
 
 Test thr PASS
 
 OPERATION REQUIREMENT TEST WAS SUCCESSFUL
-Sat Aug 15 21:43:14 UTC 2026
-Elapsed time: 00h:54m:37s. Have a nice day!
+Sun Aug 16 01:31:40 UTC 2026
+Elapsed time: 00h:39m:44s. Have a nice day!
